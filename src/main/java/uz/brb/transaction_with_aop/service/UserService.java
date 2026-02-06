@@ -14,11 +14,11 @@ public class UserService {
     @Transactional
     public void createUsers() {
         Users user1 = new Users();
-        user1.setName("Ali");
+        user1.setFullName("Ali Aliyev");
         userRepository.save(user1);
 
         Users user2 = new Users();
-        user2.setName("Vali");
+        user2.setFullName("Vali Valiyev");
         userRepository.save(user2);
 
         // Xato chiqaramiz va xato borligi uchun hech qaysi biri bazaga saqlanmaydi
@@ -27,7 +27,7 @@ public class UserService {
         }
 
         Users user3 = new Users();
-        user3.setName("Hasan");
+        user3.setFullName("Hasan Hasanov");
         userRepository.save(user3);
     }
 }
