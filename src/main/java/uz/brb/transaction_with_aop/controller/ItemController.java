@@ -1,5 +1,6 @@
 package uz.brb.transaction_with_aop.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import uz.brb.transaction_with_aop.entity.Item;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ public class ItemController {
     private final ItemService itemService;
 
     // Create Item
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
     public ResponseEntity<Item> createItem(@RequestBody Item item) {
         return ResponseEntity.ok(itemService.saveItem(item));
@@ -36,6 +38,7 @@ public class ItemController {
     }
 
     // Update Item
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<Item> updateItem(@PathVariable long id, @RequestBody Item item) {
         item.setOrderId(id);
@@ -43,6 +46,7 @@ public class ItemController {
     }
 
     // Delete Item
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteItem(@PathVariable long id) {
         itemService.deleteItem(id);

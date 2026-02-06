@@ -1,6 +1,6 @@
 package uz.brb.transaction_with_aop.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
 import lombok.*;
 
 @EqualsAndHashCode(callSuper = true)
