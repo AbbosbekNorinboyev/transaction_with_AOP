@@ -1,11 +1,5 @@
 package uz.brb.transaction_with_aop.util;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
 import lombok.extern.slf4j.Slf4j;
 
 import java.text.ParseException;
@@ -15,30 +9,9 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Set;
 
 @Slf4j
 public class Util {
-    public static void validate(Object validate) {
-        try (ValidatorFactory factory = Validation.buildDefaultValidatorFactory()) {
-            Validator validator = factory.getValidator();
-
-            Set<ConstraintViolation<Object>> violations = validator.validate(validate);
-            if (!violations.isEmpty()) {
-                StringBuilder sb = new StringBuilder();
-                for (ConstraintViolation<Object> violation : violations) {
-                    String interpolatedMessage = violation.getMessage();
-                    String propertyPath = violation.getPropertyPath().toString();
-                    sb.append(propertyPath)
-                            .append(": ")
-                            .append(interpolatedMessage)
-                            .append(System.lineSeparator());
-                }
-                throw new RuntimeException(sb.toString());
-            }
-        }
-    }
-
     public static String dateTimeFormatter(Date date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
 
