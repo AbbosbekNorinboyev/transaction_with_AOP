@@ -50,7 +50,7 @@ public class AccountService {
     }
 
     public void forcefullyThrowingException() {
-        throw new RuntimeException("receiver bank server is down ");
+        throw new RuntimeException("Receiver bank server is down ");
     }
 
     public Response<?> add(AccountRequest accountRequest) {
@@ -59,6 +59,7 @@ public class AccountService {
         account.setHolderName(accountRequest.getHolderName());
         account.setCreatedAt(LocalDateTime.now());
         accountRepository.save(account);
+
         return Response.builder()
                 .code(HttpStatus.OK.value())
                 .status(HttpStatus.OK)
