@@ -16,5 +16,4 @@ public class Item extends BaseEntity {
     private String category;
     private int qty;
     private String sourceSystem;
-
 }

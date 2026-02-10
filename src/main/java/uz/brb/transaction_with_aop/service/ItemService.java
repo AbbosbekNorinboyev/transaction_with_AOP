@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import uz.brb.transaction_with_aop.entity.Item;
+import uz.brb.transaction_with_aop.producer.ItemProducer;
 import uz.brb.transaction_with_aop.repository.ItemRepository;
 
 import java.util.List;
@@ -13,10 +14,12 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ItemService {
     private final ItemRepository itemRepository;
+    private final ItemProducer itemProducer;
 
     // Create or Update Item
     @Transactional
     public Item saveItem(Item item) {
+        itemProducer.send(item);
         return itemRepository.save(item);
     }
 
